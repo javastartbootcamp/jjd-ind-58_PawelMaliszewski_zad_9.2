@@ -4,10 +4,9 @@ public class Truck extends Car {
 
     private final String id = "Truck";
 
-    private static final double BY_100_KM = 100;
     private static final double WEIGHT_EXTRA_FUEL = .5;
 
-    private final double airConConsumption = 1.6;
+    private static final double AIR_CON_CONSUMPTION = 1.6;
     private double loadWeigth;
 
     public Truck(String name, double tankCapacity, double averageFuelConsumption, boolean aiconOn, double loadWeigth) {
@@ -34,22 +33,21 @@ public class Truck extends Car {
 
     @Override
     public double range() {
-        if (isAiconOn() && loadWeigth == 0) {
-            return rangeWithAirConOn() * BY_100_KM;
-        } else if (!isAiconOn() && loadWeigth == 0) {
-            return rangeWithAirConOff() * BY_100_KM;
-        } else if (isAiconOn() && loadWeigth > 0) {
-            return  rangeWithAirConOnAndLoad() * BY_100_KM;
+        if (loadWeigth == 0) {
+            return tankDividedByFuelConsumption() * BY_100_KM;
         }
-        return rangeWithAirConOffAndLoad() * BY_100_KM;
+        return  (tankDividedByFuelConsumption() + weightFuelConsumption()) * BY_100_KM;
     }
 
-    public double rangeWithAirConOnAndLoad() {
-        return getTankCapacity() / (getAverageFuelConsumption()
-                + airConConsumption + (loadWeigth / 100 * WEIGHT_EXTRA_FUEL));
+    private double weightFuelConsumption() {
+        return (getLoadWeigth() / 100) * WEIGHT_EXTRA_FUEL;
     }
 
-    public double rangeWithAirConOffAndLoad() {
-        return getTankCapacity() / (getAverageFuelConsumption() + (loadWeigth / 100 * WEIGHT_EXTRA_FUEL));
+    @Override
+    protected double getCurrentFuelConsumption() { // musiałem nadpisać metode, ponieważ po dodaniu static wartość AIR_CON_CONSUMPTION była pobierana z klasy CAR.
+        if (isAirConOn()) {
+            return getAverageFuelConsumption() + AIR_CON_CONSUMPTION;
+        }
+        return getAverageFuelConsumption();
     }
 }

@@ -35,13 +35,6 @@ public class Vehicle {
         return averageFuelConsumption;
     }
 
-    public boolean isAiconOn() {
-        return false;
-    }
-
-    public void setAiconOn(boolean setAircon) {
-    }
-
     public void setAverageFuelConsumption(double averageFuelConsumption) {
         this.averageFuelConsumption = averageFuelConsumption;
     }

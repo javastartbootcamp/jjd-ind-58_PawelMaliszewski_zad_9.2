@@ -3,25 +3,27 @@ package pl.javastart.task.vehicle;
 public class Car extends Vehicle {
 
     private final String id = "Car";
-    private final double airConConsumption = .8;
+    private static final double AIR_CON_CONSUMPTION = .8;
 
-    private boolean aiconOn;
+    protected static final double BY_100_KM = 100;
 
-    public Car(String name, double tankCapacity, double averageFuelConsumption, boolean aiconOn) {
+    private boolean airConOn;
+
+    public Car(String name, double tankCapacity, double averageFuelConsumption, boolean airConOn) {
         super(name, tankCapacity, averageFuelConsumption);
-        this.aiconOn = aiconOn;
+        this.airConOn = airConOn;
     }
 
     public String getId() {
         return id;
     }
 
-    public boolean isAiconOn() {
-        return aiconOn;
+    public boolean isAirConOn() {
+        return airConOn;
     }
 
-    public void setAiconOn(boolean aiconOn) {
-        this.aiconOn = aiconOn;
+    public void setAirConOn(boolean airConOn) {
+        this.airConOn = airConOn;
     }
 
     @Override
@@ -30,7 +32,7 @@ public class Car extends Vehicle {
     }
 
     public String airConSatus() {
-        if (aiconOn) {
+        if (airConOn) {
             return  ", Klimatyzacja włączona";
         }
         return ", Klimatyzacja wyłączona";
@@ -38,17 +40,17 @@ public class Car extends Vehicle {
 
     @Override
     public double range() {
-        if (aiconOn) {
-            return rangeWithAirConOn() * 100;
+        return tankDividedByFuelConsumption() * BY_100_KM;
+    }
+
+    protected double getCurrentFuelConsumption() {
+        if (isAirConOn()) {
+            return getAverageFuelConsumption() + AIR_CON_CONSUMPTION;
         }
-        return rangeWithAirConOff() * 100;
+        return getAverageFuelConsumption();
     }
 
-    protected double rangeWithAirConOn() {
-        return getTankCapacity() / (getAverageFuelConsumption() + airConConsumption);
-    }
-
-    protected double rangeWithAirConOff() {
-        return getTankCapacity() / getAverageFuelConsumption();
+    protected double tankDividedByFuelConsumption() {
+        return getTankCapacity() / getCurrentFuelConsumption();
     }
 }
