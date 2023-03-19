@@ -24,7 +24,7 @@ public class VehicleUtils {
 
     private void showSpecificCarInfo(String name) {
         for (Car vehicle : vehicles) {
-            if (vehicle.getName().equals(name)) {
+            if (vehicle.getId().equals(name)) {
                 System.out.printf(vehicle.info() + ", Zasięg: %.0f%s\n", vehicle.range(), "km");
             }
         }
