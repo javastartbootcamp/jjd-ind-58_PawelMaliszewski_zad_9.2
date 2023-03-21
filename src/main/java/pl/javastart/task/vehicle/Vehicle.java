@@ -1,6 +1,7 @@
 package pl.javastart.task.vehicle;
 
 public class Vehicle {
+    protected static final double BY_100_KM = 100;
     private String name;
     private double tankCapacity;
     private double averageFuelConsumption;
@@ -41,10 +42,14 @@ public class Vehicle {
 
     public String info() {
         return "Nazwa: " + name + ", Pojemność baku: " + tankCapacity
-                + ", Spalanie na 100km: " + averageFuelConsumption + " Litra";
+                + ", Spalanie na 100km: " + currentFuelConsumption() + " Litra";
     }
 
     public double range() {
-        return 0;
+        return tankCapacity / currentFuelConsumption() * BY_100_KM;
+    }
+
+    protected double currentFuelConsumption() {
+        return averageFuelConsumption;
     }
 }

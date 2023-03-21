@@ -4,9 +4,6 @@ public class Car extends Vehicle {
 
     private final String id = "Car";
     private static final double AIR_CON_CONSUMPTION = .8;
-
-    protected static final double BY_100_KM = 100;
-
     private boolean airConOn;
 
     public Car(String name, double tankCapacity, double averageFuelConsumption, boolean airConOn) {
@@ -40,17 +37,14 @@ public class Car extends Vehicle {
 
     @Override
     public double range() {
-        return tankDividedByFuelConsumption() * BY_100_KM;
+        return super.range();
     }
 
-    protected double getCurrentFuelConsumption() {
+    @Override
+    protected double currentFuelConsumption() {
         if (isAirConOn()) {
             return getAverageFuelConsumption() + AIR_CON_CONSUMPTION;
         }
-        return getAverageFuelConsumption();
-    }
-
-    protected double tankDividedByFuelConsumption() {
-        return getTankCapacity() / getCurrentFuelConsumption();
+        return super.currentFuelConsumption();
     }
 }
