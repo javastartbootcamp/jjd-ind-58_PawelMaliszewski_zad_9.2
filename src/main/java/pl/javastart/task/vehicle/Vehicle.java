@@ -12,10 +12,6 @@ public class Vehicle {
         this.averageFuelConsumption = averageFuelConsumption;
     }
 
-    public String getId() {
-        return "";
-    }
-
     public String getName() {
         return name;
     }
@@ -40,7 +36,7 @@ public class Vehicle {
         this.averageFuelConsumption = averageFuelConsumption;
     }
 
-    public String info() {
+    public String getInfo() {
         return "Nazwa: " + name + ", Pojemność baku: " + tankCapacity
                 + ", Spalanie na 100km: " + currentFuelConsumption() + " Litra";
     }

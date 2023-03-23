@@ -2,17 +2,12 @@ package pl.javastart.task.vehicle;
 
 public class Car extends Vehicle {
 
-    private final String id = "Car";
     private static final double AIR_CON_CONSUMPTION = .8;
     private boolean airConOn;
 
     public Car(String name, double tankCapacity, double averageFuelConsumption, boolean airConOn) {
         super(name, tankCapacity, averageFuelConsumption);
         this.airConOn = airConOn;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public boolean isAirConOn() {
@@ -24,15 +19,15 @@ public class Car extends Vehicle {
     }
 
     @Override
-    public String info() {
-        return super.info() + airConSatus();
+    public String getInfo() {
+        return super.getInfo() + ", " + airConStatus();
     }
 
-    public String airConSatus() {
+    public String airConStatus() {
         if (airConOn) {
-            return  ", Klimatyzacja włączona";
+            return  "Klimatyzacja włączona";
         }
-        return ", Klimatyzacja wyłączona";
+        return "Klimatyzacja wyłączona";
     }
 
     @Override

@@ -9,15 +9,15 @@ public class Main {
         vehicleUtils.createVehicles();
         vehicleUtils.showAllVehicleInfo();
         System.out.println("---------------------------------------------------");
-        vehicleUtils.swithOnAirConAllVehicles();
+        vehicleUtils.switchOnAirConAllVehicles();
         vehicleUtils.showAllVehicleInfo();
 
         System.out.println("---------------------------------------------------");
 
-        vehicleUtils.getCarsInfo();
+        vehicleUtils.printCarsInfo();
 
         System.out.println("---------------------------------------------------");
 
-        vehicleUtils.getTrucksInfo();
+        vehicleUtils.printTrucksInfo();
     }
 }

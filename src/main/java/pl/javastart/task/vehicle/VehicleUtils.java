@@ -18,29 +18,29 @@ public class VehicleUtils {
 
     public void showAllVehicleInfo() {
         for (Car vehicle : vehicles) {
-            System.out.printf(vehicle.info() + ", Zasięg: %.0f%s\n", vehicle.range(), "km");
+            System.out.printf(vehicle.getInfo() + ", Zasięg: %.0f%s\n", vehicle.range(), "km");
         }
     }
 
     private void showSpecificCarInfo(String name) {
         for (Car vehicle : vehicles) {
-            if (vehicle.getId().equals(name)) {
-                System.out.printf(vehicle.info() + ", Zasięg: %.0f%s\n", vehicle.range(), "km");
+            if (vehicle.getClass().getSimpleName().equals(name)) {
+                System.out.printf(vehicle.getInfo() + ", Zasięg: %.0f%s\n", vehicle.range(), "km");
             }
         }
     }
 
-    public void swithOnAirConAllVehicles() {
+    public void switchOnAirConAllVehicles() {
         for (Car vehicle : vehicles) {
             vehicle.setAirConOn(true);
         }
     }
 
-    public void getCarsInfo() {
+    public void printCarsInfo() {
         showSpecificCarInfo("Car");
     }
 
-    public void getTrucksInfo() {
+    public void printTrucksInfo() {
         showSpecificCarInfo("Truck");
     }
 }

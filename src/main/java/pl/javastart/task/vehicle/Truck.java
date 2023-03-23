@@ -2,33 +2,26 @@ package pl.javastart.task.vehicle;
 
 public class Truck extends Car {
 
-    private final String id = "Truck";
-
     private static final double WEIGHT_EXTRA_FUEL = .5;
-
     private static final double AIR_CON_CONSUMPTION = 1.6;
-    private double loadWeigth;
+    private double loadWeight;
 
-    public Truck(String name, double tankCapacity, double averageFuelConsumption, boolean aiconOn, double loadWeigth) {
+    public Truck(String name, double tankCapacity, double averageFuelConsumption, boolean aiconOn, double loadWeight) {
         super(name, tankCapacity, averageFuelConsumption, aiconOn);
-        this.loadWeigth = loadWeigth;
+        this.loadWeight = loadWeight;
     }
 
-    public String getId() {
-        return id;
+    public double getLoadWeight() {
+        return loadWeight;
     }
 
-    public double getLoadWeigth() {
-        return loadWeigth;
-    }
-
-    public void setLoadWeigth(double loadWeigth) {
-        this.loadWeigth = loadWeigth;
+    public void setLoadWeight(double loadWeigth) {
+        this.loadWeight = loadWeigth;
     }
 
     @Override
-    public String info() {
-        return super.info() + ", Waga ładunku: " + loadWeigth;
+    public String getInfo() {
+        return super.getInfo() + ", Waga ładunku: " + loadWeight;
     }
 
     @Override
@@ -37,7 +30,7 @@ public class Truck extends Car {
     }
 
     private double weightFuelConsumption() {
-        return (getLoadWeigth() / 100) * WEIGHT_EXTRA_FUEL;
+        return (getLoadWeight() / 100) * WEIGHT_EXTRA_FUEL;
     }
 
     @Override
@@ -46,6 +39,6 @@ public class Truck extends Car {
         if (isAirConOn()) {
             consumption += AIR_CON_CONSUMPTION;
         }
-        return consumption += weightFuelConsumption();
+        return consumption + weightFuelConsumption();
     }
 }
